@@ -1,0 +1,7 @@
+= cargo-crate
+:toc: right
+:prj: pass:q[`cargo-crate`]
+:cmd: cargo-crate
+:version: v0.0.1
+
+TODO

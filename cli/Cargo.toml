@@ -1,0 +1,21 @@
+[package]
+name = "cargo-crate"
+version = "0.0.1"
+edition = "2021"
+description = "tbd"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
+keywords = ["cli", "cargo", "crate"]
+
+[[bin]]
+name = "crate"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "3.1", features = ["derive", "env", "unicode", "cargo"] }
+env_logger = "0.9"
+log = "0.4"
+color-eyre = "0.6"
+
+[dev-dependencies]
+assert_cmd = "2.0"
