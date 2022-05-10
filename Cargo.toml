@@ -6,7 +6,6 @@ members = [
     "lib",
 ]
 
-# 59.31s
 [profile.production]
 codegen-units = 1
 inherits = "release"

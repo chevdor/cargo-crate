@@ -6,7 +6,7 @@ USAGE:
     crate open [OPTIONS] <CRATE_NAME>
 
 ARGS:
-    <CRATE_NAME>    todo
+    <CRATE_NAME>    The name of the crate to open in your browser
 
 OPTIONS:
     -h, --help       Print help information

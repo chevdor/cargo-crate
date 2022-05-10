@@ -4,4 +4,10 @@
 :cmd: cargo-crate
 :version: v0.0.1
 
-TODO
+== Intro
+
+An additional cargo command for your crate.
+
+include::doc/install.adoc[]
+
+include::doc/usage.adoc[]

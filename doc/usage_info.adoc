@@ -3,10 +3,10 @@ crate-info 0.0.1
 The `info` command returns summarized information
 
 USAGE:
-    crate info [OPTIONS] <CRATE_NAME>
+    crate info [OPTIONS] [CRATE_NAME]...
 
 ARGS:
-    <CRATE_NAME>    todo
+    <CRATE_NAME>...    One or more crate names
 
 OPTIONS:
     -h, --help       Print help information
