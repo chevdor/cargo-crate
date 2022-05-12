@@ -1,3 +1,4 @@
+use chrono_humanize::HumanTime;
 use crate::api_reponse::*;
 use crate::info_opts::InfoOpts;
 use crate::WrappedVersion;
@@ -77,10 +78,10 @@ impl Info {
 					_ => String::from("n/a"),
 				};
 				println!(
-					"{:>col_size$} v{} by {} on {} with {} downloads", "Latest:",
+					"{:>col_size$} v{} by {} {} with {} downloads", "Latest:",
 					latest.num,
 					publisher_name,
-					latest.updated_at.format("%Y-%m-%d %H:%M:%S").to_string(),
+					HumanTime::from(latest.updated_at),
 					latest.downloads
 				);
 			}

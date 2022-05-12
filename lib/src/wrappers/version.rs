@@ -1,3 +1,4 @@
+use chrono_humanize::HumanTime;
 use byte_unit::*;
 use crates_io_api::Version;
 use std::fmt::Display;
@@ -19,7 +20,7 @@ impl<'a> Display for WrappedVersion<'a> {
 			Some(user) => user.name.as_ref().unwrap(),
 			_ => "n/a",
 		};
-		fmt.write_fmt(format_args!("  published by {}", publisher))?;
+		fmt.write_fmt(format_args!("  published {} by {}", HumanTime::from(c.updated_at), publisher))?;
 		fmt.write_fmt(format_args!(", downloads: {}", c.downloads))?;
 
 		// fmt.write_fmt(format_args!("{:?}", self.version))?;

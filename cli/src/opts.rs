@@ -40,4 +40,16 @@ pub struct OpenOpts {
 	/// The name of the crate to open in your browser
 	#[clap(alias("name"), index = 1)]
 	pub crate_name: String,
+
+	/// We open crates.io by default, use this flag to open the repo instead
+	#[clap(long, alias("repo"))]
+	pub repository: bool,
+
+	/// We open crates.io by default, use this flag to open the homepage instead
+	#[clap(long, alias("home"))]
+	pub homepage: bool,
+
+	/// We open crates.io by default, use this flag to open the documentation instead
+	#[clap(long, alias("doc"))]
+	pub documentation: bool,
 }

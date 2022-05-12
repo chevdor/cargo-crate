@@ -7,6 +7,14 @@ use opts::*;
 use std::ffi::OsString;
 use webbrowser::{Browser, BrowserOptions};
 
+#[derive(Debug)]
+enum Target {
+	CratesIo,
+	Repository,
+	Homepage,
+	Documentation,
+}
+
 /// Main entry point
 fn main() -> color_eyre::Result<()> {
 	env_logger::Builder::from_env(Env::default().default_filter_or("none")).init();
@@ -21,8 +29,34 @@ fn main() -> color_eyre::Result<()> {
 	match opts.subcmd {
 		SubCommand::Open(open_opts) => {
 			log::debug!("Running command 'open' for {:?}", open_opts);
-			let url = format!("https://crates.io/crates/{}", open_opts.crate_name);
+			let target: Target = if open_opts.repository {
+				Target::Repository
+			} else if open_opts.homepage {
+				Target::Homepage
+			} else if open_opts.documentation {
+				Target::Documentation
+			} else {
+				Target::CratesIo
+			};
 
+			let the_crate = open_opts.crate_name.clone();
+			let the_crates = vec![the_crate];
+			let options = lib_cargo_crate::InfoOpts::default();
+
+			let info = Info::new();
+			let fetched = info.fetch(the_crates, &options);
+			let data = fetched.unwrap();
+			let data = data.first();
+			let data = data.unwrap();
+
+			let url = match target {
+				Target::CratesIo => format!("https://crates.io/crates/{}", &open_opts.crate_name),
+				Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().into(),
+				Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().into(),
+				Target::Documentation => data.krate.crate_data.documentation.as_ref().unwrap().into(),
+			};
+
+			log::debug!("Opening {:?} from {:?}", &target, url);
 			let mut browser_options = BrowserOptions::new();
 			browser_options.with_target_hint(&open_opts.crate_name);
 			webbrowser::open_browser_with_options(Browser::Default, &url, &browser_options)
@@ -32,10 +66,7 @@ fn main() -> color_eyre::Result<()> {
 		SubCommand::Info(info_opts) => {
 			log::debug!("Running command 'info'");
 			let crates: Vec<String> = info_opts.crate_name;
-			let display_opts = lib_cargo_crate::InfoOpts {
-				json: opts.json,
-				no_versions: info_opts.no_versions,
-			};
+			let display_opts = lib_cargo_crate::InfoOpts { json: opts.json, no_versions: info_opts.no_versions };
 			let data = Info::new().fetch(crates, &display_opts).unwrap();
 			Info::show(data, &display_opts);
 		}
