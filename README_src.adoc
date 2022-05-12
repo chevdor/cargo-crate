@@ -6,8 +6,20 @@
 
 == Intro
 
-An additional cargo command for your crate and the only one allowing to query a crate and return its owners.
+{prj} is an additional cargo command for your crate.
+
+== Features
+
+In a nutshell {prj} allows:
+
+- fetching information about one or several crates, including its owners
+- opening a crate in crates.io
+- opening a crates' documentation directly
+- opening a crates' repository directly
+- opening a crates' homepage directly
 
 include::doc/install.adoc[]
 
 include::doc/usage.adoc[]
+
+// include::doc/usage_advanced.adoc[]

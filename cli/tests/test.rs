@@ -33,7 +33,6 @@ mod cli_tests {
 
 			let assert = cmd.args(&["open", "cargo-crate"]).assert();
 			assert.success().code(0);
-			// assert!(true);
 		}
 	}
 }

@@ -1,7 +1,7 @@
-use chrono_humanize::HumanTime;
 use crate::api_reponse::*;
 use crate::info_opts::InfoOpts;
 use crate::WrappedVersion;
+use chrono_humanize::HumanTime;
 use crates_io_api::{Error, SyncClient};
 use std::time::Duration;
 
@@ -45,7 +45,7 @@ impl Info {
 	/// Print a formatted output to the console.
 	pub fn show_txt(response: &[ApiResponse], opts: Option<&InfoOpts>) {
 		let col_size = 12;
-		let emoji_size = col_size -1;
+		let emoji_size = col_size - 1;
 		response.iter().for_each(|r| {
 			println!("{:>emoji_size$} {:<}", "🦀 Crate:", r.krate.crate_data.name,);
 
@@ -78,7 +78,8 @@ impl Info {
 					_ => String::from("n/a"),
 				};
 				println!(
-					"{:>col_size$} v{} by {} {} with {} downloads", "Latest:",
+					"{:>col_size$} v{} by {} {} with {} downloads",
+					"Latest:",
 					latest.num,
 					publisher_name,
 					HumanTime::from(latest.updated_at),
@@ -121,7 +122,7 @@ mod test_super {
 	#[test]
 	fn test_fetch() {
 		let crates: Vec<String> = vec!["cargo-crate".to_string(), "sshq".to_string()];
-		let opts = InfoOpts { json: true };
+		let opts = InfoOpts::default();
 
 		let res = Info::new().fetch(crates, &opts);
 		assert!(res.is_ok());

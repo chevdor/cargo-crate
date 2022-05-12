@@ -9,6 +9,10 @@ ARGS:
     <CRATE_NAME>    The name of the crate to open in your browser
 
 OPTIONS:
-    -h, --help       Print help information
-    -j, --json       Output as json
-    -V, --version    Print version information
+        --documentation    We open crates.io by default, use this flag to open the documentation
+                           instead
+    -h, --help             Print help information
+        --homepage         We open crates.io by default, use this flag to open the homepage instead
+    -j, --json             Output as json
+        --repository       We open crates.io by default, use this flag to open the repo instead
+    -V, --version          Print version information

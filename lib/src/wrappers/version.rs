@@ -1,5 +1,5 @@
-use chrono_humanize::HumanTime;
 use byte_unit::*;
+use chrono_humanize::HumanTime;
 use crates_io_api::Version;
 use std::fmt::Display;
 

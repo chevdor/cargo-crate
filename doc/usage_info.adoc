@@ -9,6 +9,7 @@ ARGS:
     <CRATE_NAME>...    One or more crate names
 
 OPTIONS:
-    -h, --help       Print help information
-    -j, --json       Output as json
-    -V, --version    Print version information
+    -h, --help           Print help information
+    -j, --json           Output as json
+    -n, --no-versions    Do not show the details about all the older versions
+    -V, --version        Print version information

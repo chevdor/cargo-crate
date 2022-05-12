@@ -8,6 +8,8 @@ license = "MIT"
 keywords = ["cli", "cargo", "crate"]
 default-run = "cargo-crate"
 repository = "https://github.com/chevdor/cargo-crate"
+homepage = "https://github.com/chevdor/cargo-crate"
+documentation = "https://github.com/chevdor/cargo-crate"
 authors = ["Wilfried Kopp <chevdor@gmail.com>"]
 
 [[bin]]

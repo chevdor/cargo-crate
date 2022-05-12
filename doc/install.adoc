@@ -15,4 +15,13 @@ You may for instance add:
 open = "crate open"
 info = "crate info"
 show = "crate info"
+repo = "crate open --repo"
+home = "crate open --home"
+docu = "crate open --doc"
 ```
+
+Those will allow you the following calls:
+
+- `cargo repo clap` opens the clap documentation
+- `cargo home clap` opens the clap homepage
+- etc...

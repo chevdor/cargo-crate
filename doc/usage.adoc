@@ -1,6 +1,8 @@
 
 == Usage
 
+`cargo-crate` can be started using both `cargo crate` or `cargo-crate`.
+
 === Help
 ----
 include::help.adoc[]
