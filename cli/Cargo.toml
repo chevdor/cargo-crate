@@ -9,7 +9,7 @@ keywords = ["cli", "cargo", "crate", "cargo-subcommand"]
 default-run = "cargo-crate"
 repository = "https://github.com/chevdor/cargo-crate"
 homepage = "https://github.com/chevdor/cargo-crate"
-documentation = "https://github.com/chevdor/cargo-crate"
+documentation = "https://docs.rs/crate/cargo-crate"
 authors = ["Wilfried Kopp <chevdor@gmail.com>"]
 readme = "README.md"
 
