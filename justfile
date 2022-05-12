@@ -18,6 +18,7 @@ _usage:
 	cargo run -q --bin cargo-crate -- --help > doc/help.adoc
 	cargo run -q --bin cargo-crate -- info --help > doc/usage_info.adoc
 	cargo run -q --bin cargo-crate -- open --help > doc/usage_open.adoc
+	cargo run -q --bin cargo-crate -- search --help > doc/usage_search.adoc
 
 # Generate documentation
 doc: _usage

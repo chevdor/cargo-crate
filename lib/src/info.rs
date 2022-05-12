@@ -2,7 +2,7 @@ use crate::api_reponse::*;
 use crate::info_opts::InfoOpts;
 use crate::WrappedVersion;
 use chrono_humanize::HumanTime;
-use crates_io_api::{Error, SyncClient};
+use crates_io_api::{Crate, CratesQuery, Error, Sort, SyncClient};
 use std::time::Duration;
 
 pub struct Info {
@@ -24,6 +24,7 @@ impl Info {
 
 	/// Fetch all the information about the crate
 	pub fn fetch(&self, crates: Vec<String>, _opts: &InfoOpts) -> anyhow::Result<Vec<ApiResponse>> {
+		// TODO: check out full_crate
 		Ok(crates
 			.iter()
 			.map(|krate| {
@@ -58,7 +59,11 @@ impl Info {
 			}
 
 			match r.owners.len() {
-				1 => println!("{:>col_size$} {:<}", "Owner:", r.owners.first().unwrap().name.as_ref().unwrap()),
+				1 => println!(
+					"{:>col_size$} {:<}",
+					"Owner:",
+					r.owners.first().expect("Missing user").name.as_ref().unwrap_or(&String::from("n/a"))
+				),
 				x if x > 1 => {
 					print!("{:>col_size$} ", "Owners:");
 					r.owners.iter().for_each(|user| print!("{}, ", user.name.as_ref().unwrap()));
@@ -113,6 +118,13 @@ impl Info {
 			println!("{}", serde_json::to_string_pretty(&response).unwrap());
 		}
 	}
+
+	pub fn search(&self, pattern: &str, page_size: u64) -> anyhow::Result<Vec<Crate>> {
+		let q = CratesQuery::builder().sort(Sort::Alphabetical).search(pattern).page_size(page_size).build();
+		let crates = self.client.crates(q)?;
+
+		Ok(crates.crates)
+	}
 }
 
 #[cfg(test)]
@@ -127,5 +139,15 @@ mod test_super {
 		let res = Info::new().fetch(crates, &opts);
 		assert!(res.is_ok());
 		assert_eq!(2, res.unwrap().len());
+	}
+
+	#[test]
+	fn test_search() {
+		let pattern = "cargo-crate";
+
+		let crates = Info::new().search(pattern, 32).unwrap();
+		println!("crates = {:?}", &crates.len());
+		crates.iter().for_each(|c| println!("- {}", c.name));
+		assert!(crates.len() > 10);
 	}
 }

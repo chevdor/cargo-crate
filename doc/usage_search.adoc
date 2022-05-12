@@ -1,0 +1,15 @@
+cargo-crate-search 0.0.3
+Wilfried Kopp <chevdor@gmail.com>
+The `search` command returns a list of crates matching your search pattern
+
+USAGE:
+    cargo-crate search [OPTIONS] <PATTERN>
+
+ARGS:
+    <PATTERN>    You search pattern
+
+OPTIONS:
+    -h, --help             Print help information
+    -j, --json             Output as json
+    -l, --limit <LIMIT>    Number of expected results: 0..100 [default: 32]
+    -V, --version          Print version information

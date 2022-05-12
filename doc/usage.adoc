@@ -17,3 +17,8 @@ include::usage_info.adoc[]
 ----
 include::usage_open.adoc[]
 ----
+
+=== Search command
+----
+include::usage_search.adoc[]
+----
