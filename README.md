@@ -143,4 +143,4 @@ Those will allow you the following calls:
 
 will allow you doing cool things like:
 
-![493910](https://asciinema.org/a/493910.png)
+[![asciicast](https://asciinema.org/a/493910.svg)](https://asciinema.org/a/493910)
