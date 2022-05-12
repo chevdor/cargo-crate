@@ -22,7 +22,7 @@ env_logger = "0.9"
 log = "0.4"
 color-eyre = "0.6"
 webbrowser = "0.7"
-lib-cargo-crate = { path = "../lib" }
+lib-cargo-crate = { path = "../lib", version = "0.1" }
 
 [dev-dependencies]
 assert_cmd = "2.0"
