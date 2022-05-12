@@ -3,7 +3,7 @@ use crates_io_api::Version;
 use std::fmt::Display;
 
 pub struct WrappedVersion<'a> {
-	version: &'a Version,
+	pub version: &'a Version,
 }
 
 impl<'a> Display for WrappedVersion<'a> {

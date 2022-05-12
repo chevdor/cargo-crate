@@ -2,3 +2,17 @@
 == Install
 
     cargo instal cargo-crate
+
+=== Aliases
+
+You will typically use cargo-crate as `cargo crate <command> [args]` which you may find a bit verbose.
+To make it easier, `cargo` allows defining aliases in you `$CARGO_HOME/config` file under the `[alias]` section.
+
+You may for instance add:
+```
+[alias]
+...
+open = "crate open"
+info = "crate info"
+show = "crate info"
+```

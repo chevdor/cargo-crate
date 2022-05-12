@@ -1,9 +1,9 @@
-crate-open 0.0.1
-
+cargo-crate-open 0.0.1
+Wilfried Kopp <chevdor@gmail.com>
 Opens the crate in a browser
 
 USAGE:
-    crate open [OPTIONS] <CRATE_NAME>
+    cargo-crate open [OPTIONS] <CRATE_NAME>
 
 ARGS:
     <CRATE_NAME>    The name of the crate to open in your browser

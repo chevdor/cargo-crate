@@ -1,9 +1,9 @@
-crate-info 0.0.1
-
+cargo-crate-info 0.0.1
+Wilfried Kopp <chevdor@gmail.com>
 The `info` command returns summarized information
 
 USAGE:
-    crate info [OPTIONS] [CRATE_NAME]...
+    cargo-crate info [OPTIONS] [CRATE_NAME]...
 
 ARGS:
     <CRATE_NAME>...    One or more crate names

@@ -1,9 +1,9 @@
 cargo-crate 0.0.1
-
+Wilfried Kopp <chevdor@gmail.com>
 You can find all available commands below
 
 USAGE:
-    crate [OPTIONS] <SUBCOMMAND>
+    cargo-crate [OPTIONS] <SUBCOMMAND>
 
 OPTIONS:
     -h, --help       Print help information

@@ -28,6 +28,10 @@ pub struct InfoOpts {
 	/// One or more crate names
 	#[clap(alias("name"), index = 1)]
 	pub crate_name: Vec<String>,
+
+	/// Do not show the details about all the older versions
+	#[clap(short, long, alias("no_ver"))]
+	pub no_versions: bool,
 }
 
 /// Opens the crate in a browser

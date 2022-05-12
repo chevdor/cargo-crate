@@ -6,7 +6,7 @@
 
 == Intro
 
-An additional cargo command for your crate.
+An additional cargo command for your crate and the only one allowing to query a crate and return its owners.
 
 include::doc/install.adoc[]
 

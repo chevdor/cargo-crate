@@ -6,11 +6,12 @@ description = "A set of crate related cargo commands. You can for instance get t
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 license = "MIT"
 keywords = ["cli", "cargo", "crate"]
-default-run = "crate"
+default-run = "cargo-crate"
 repository = "https://github.com/chevdor/cargo-crate"
+authors = ["Wilfried Kopp <chevdor@gmail.com>"]
 
 [[bin]]
-name = "crate"
+name = "cargo-crate"
 path = "src/main.rs"
 
 [dependencies]
