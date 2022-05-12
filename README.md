@@ -141,6 +141,4 @@ Those will allow you the following calls:
         fi
     }
 
-will allow you doing cool things like:
-
-[![asciicast](https://asciinema.org/a/493910.svg)](https://asciinema.org/a/493910)
+allows doing cool things like [this](https://asciinema.org/a/493910).

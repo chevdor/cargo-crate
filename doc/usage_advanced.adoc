@@ -15,6 +15,4 @@ function crate_search() {
 }
 ----
 
-will allow you doing cool things like:
-
-image::https://asciinema.org/a/493910.png[link="https://asciinema.org/a/493910"]
+allows doing cool things like https://asciinema.org/a/493910[this].
