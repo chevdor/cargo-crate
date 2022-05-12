@@ -20,6 +20,9 @@ pub enum SubCommand {
 
 	#[clap(version = crate_version!(), author = crate_authors!())]
 	Open(OpenOpts),
+
+	#[clap(version = crate_version!(), author = crate_authors!())]
+	Search(SearchOpts),
 }
 
 /// The `info` command returns summarized information
@@ -52,4 +55,16 @@ pub struct OpenOpts {
 	/// We open crates.io by default, use this flag to open the documentation instead
 	#[clap(long, alias("doc"))]
 	pub documentation: bool,
+}
+
+/// The `search` command returns a list of crates matching your search pattern
+#[derive(Parser, Debug)]
+pub struct SearchOpts {
+	/// You search pattern
+	#[clap(index = 1)]
+	pub pattern: Vec<String>,
+
+	/// Do not show the details about all the older versions
+	#[clap(short, long, default_value("32"))]
+	pub limit: u16,
 }
