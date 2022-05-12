@@ -2,7 +2,17 @@
 
 ## Intro
 
-`cargo-crate` is an additional cargo command for your crate.
+`cargo-crate` is an additional cargo command for your crate. It basiscally does the same (I’d argue better) then the following:
+
+-   cargo-show
+
+-   cargo-info
+
+-   cargo-open
+
+-   cargo-search
+
+but with a single crate.
 
 ## Features
 
