@@ -19,8 +19,8 @@ impl<'a> Display for WrappedVersion<'a> {
 		let publisher = match &c.published_by {
 			Some(user) => match user.name.as_ref() {
 				Some(name) => name,
-				_ => "n/a"
-			}
+				_ => "n/a",
+			},
 			_ => "n/a",
 		};
 		fmt.write_fmt(format_args!("  published {} by {}", HumanTime::from(c.updated_at), publisher))?;
