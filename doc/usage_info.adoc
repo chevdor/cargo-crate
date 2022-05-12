@@ -1,4 +1,4 @@
-cargo-crate-info 0.0.1
+cargo-crate-info 0.0.3
 Wilfried Kopp <chevdor@gmail.com>
 The `info` command returns summarized information
 

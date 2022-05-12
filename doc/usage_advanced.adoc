@@ -1,4 +1,20 @@
 
 == Advanced Usage
 
-to come
+`cargo-crate` can be used with `fzf` for powerful interactive searches.
+
+----
+function crate_search() {
+    PATTERN=${@};
+    if [ $PATTERN ]; then
+        cargo-crate search -l 100 $PATTERN | fzf -m -i --preview 'cargo-crate info {}' --query "$PATTERN"
+    else
+        echo You must provide a starting search pattern
+        exit 1
+    fi
+}
+----
+
+will allow you doing cool things like:
+
+image::https://asciinema.org/a/493910.png[link="https://asciinema.org/a/493910"]

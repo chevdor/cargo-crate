@@ -113,7 +113,7 @@ jobs:
       - name: Prepare new Formula
         env:
           NAME: cargo-crate
-          DESCRIPTION: "A command line utility written in Rust download, inspect and compare Substrate based chains WASM Runtimes"
+          DESCRIPTION: "A set of crate related cargo commands. You can for instance get the information about a crate, as text or json, including the owners of a crate and its versions."
           SITE: https://github.com
           REPO: chevdor/cargo-crate
           SHA256: ${{env.SHA256}}
@@ -125,6 +125,7 @@ jobs:
 
       - name: Update Homebrew Formula
         run: |
+          mkdir -p Formula
           cp -f $HOME/cargo-crate.rb Formula/cargo-crate.rb
           git config --global user.name 'TeraBot'
           git config --global user.email 'chevdor@users.noreply.github.com'

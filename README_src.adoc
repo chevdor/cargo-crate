@@ -22,4 +22,4 @@ include::doc/install.adoc[]
 
 include::doc/usage.adoc[]
 
-// include::doc/usage_advanced.adoc[]
+include::doc/usage_advanced.adoc[]

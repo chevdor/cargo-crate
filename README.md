@@ -52,7 +52,7 @@ Those will allow you the following calls:
 
 ### Help
 
-    cargo-crate 0.0.1
+    cargo-crate 0.0.3
     Wilfried Kopp <chevdor@gmail.com>
     You can find all available commands below
 
@@ -65,13 +65,14 @@ Those will allow you the following calls:
         -V, --version    Print version information
 
     SUBCOMMANDS:
-        help    Print this message or the help of the given subcommand(s)
-        info    The `info` command returns summarized information
-        open    Opens the crate in a browser
+        help      Print this message or the help of the given subcommand(s)
+        info      The `info` command returns summarized information
+        open      Opens the crate in a browser
+        search    The `search` command returns a list of crates matching your search pattern
 
 ### Info command
 
-    cargo-crate-info 0.0.1
+    cargo-crate-info 0.0.3
     Wilfried Kopp <chevdor@gmail.com>
     The `info` command returns summarized information
 
@@ -89,7 +90,7 @@ Those will allow you the following calls:
 
 ### Open command
 
-    cargo-crate-open 0.0.1
+    cargo-crate-open 0.0.3
     Wilfried Kopp <chevdor@gmail.com>
     Opens the crate in a browser
 
@@ -107,3 +108,39 @@ Those will allow you the following calls:
         -j, --json             Output as json
             --repository       We open crates.io by default, use this flag to open the repo instead
         -V, --version          Print version information
+
+### Search command
+
+    cargo-crate-search 0.0.3
+    Wilfried Kopp <chevdor@gmail.com>
+    The `search` command returns a list of crates matching your search pattern
+
+    USAGE:
+        cargo-crate search [OPTIONS] <PATTERN>
+
+    ARGS:
+        <PATTERN>    You search pattern
+
+    OPTIONS:
+        -h, --help             Print help information
+        -j, --json             Output as json
+        -l, --limit <LIMIT>    Number of expected results: 0..100 [default: 32]
+        -V, --version          Print version information
+
+## Advanced Usage
+
+`cargo-crate` can be used with `fzf` for powerful interactive searches.
+
+    function crate_search() {
+        PATTERN=${@};
+        if [ $PATTERN ]; then
+            cargo-crate search -l 100 $PATTERN | fzf -m -i --preview 'cargo-crate info {}' --query "$PATTERN"
+        else
+            echo You must provide a starting search pattern
+            exit 1
+        fi
+    }
+
+will allow you doing cool things like:
+
+![493910](https://asciinema.org/a/493910.png)

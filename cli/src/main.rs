@@ -70,6 +70,16 @@ fn main() -> color_eyre::Result<()> {
 			let data = Info::new().fetch(crates, &display_opts).unwrap();
 			Info::show(data, &display_opts);
 		}
+
+		SubCommand::Search(search_opts) => {
+			log::debug!("Running command 'search'");
+			log::debug!("Searching for {:?}", search_opts);
+
+			let hits = Info::new().search(&search_opts.pattern, search_opts.limit).unwrap();
+			hits.iter().for_each(|c| {
+				println!("{}", c.name);
+			})
+		}
 	}
 
 	Ok(())
