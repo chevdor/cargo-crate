@@ -48,24 +48,24 @@ impl Info {
 		let col_size = 12;
 		let emoji_size = col_size - 1;
 		response.iter().for_each(|r| {
-			println!("{:>emoji_size$} {:<}", "🦀 Crate:", r.krate.crate_data.name,);
+			println!("{:<emoji_size$} {:<}", "🦀 Crate:", r.krate.crate_data.name,);
 
 			if let Some(h) = r.krate.crate_data.homepage.as_ref() {
-				println!("{:>col_size$} {:<}", "Homepage:", h);
+				println!("{:<col_size$} {:<}", "Homepage:", h);
 			}
 
 			if let Some(h) = r.krate.crate_data.repository.as_ref() {
-				println!("{:>col_size$} {:<}", "Repository:", h);
+				println!("{:<col_size$} {:<}", "Repository:", h);
 			}
 
 			match r.owners.len() {
 				1 => println!(
-					"{:>col_size$} {:<}",
+					"{:<col_size$} {:<}",
 					"Owner:",
 					r.owners.first().expect("Missing user").name.as_ref().unwrap_or(&String::from("n/a"))
 				),
 				x if x > 1 => {
-					print!("{:>col_size$} ", "Owners:");
+					print!("{:<col_size$} ", "Owners:");
 					r.owners.iter().for_each(|user| print!("{}, ", user.name.as_ref().unwrap()));
 					println!();
 				}
@@ -83,7 +83,7 @@ impl Info {
 					_ => String::from("n/a"),
 				};
 				println!(
-					"{:>col_size$} v{} by {} {} with {} downloads",
+					"{:<col_size$} v{} by {} {} with {} downloads",
 					"Latest:",
 					latest.num,
 					publisher_name,
