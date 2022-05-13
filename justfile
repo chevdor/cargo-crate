@@ -1,5 +1,6 @@
 VERSION := `toml get cli/Cargo.toml package.version | jq -r`
 export TAG:=`toml get cli/Cargo.toml package.version | jq -r .`
+default_bump := 'patch'
 
 # List available commands
 _default:
@@ -32,11 +33,11 @@ _fmt:
 _clippy:
 	cargo +nightly clippy --all-features --all-targets
 
-_deny:
+deny:
 	cargo deny check
 
 # Run checks such as clippy, rustfmt, etc...
-check: _clippy _fmt _deny
+check: _clippy _fmt
 
 # Minor bump, can be used once the release is ready
 bump:
@@ -56,8 +57,8 @@ md:
     #!/usr/bin/env bash
     asciidoctor -b docbook -a leveloffset=+1 -o - README_src.adoc | pandoc   --markdown-headings=atx --wrap=preserve -t markdown_strict -f docbook - > README.md
 
-release: check test_all bump doc md
-	cargo publish
+release bump=default_bump: check test_all doc md
+	cargo workspaces publish {{bump}}
 
 tag:
     #!/bin/sh

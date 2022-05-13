@@ -121,7 +121,7 @@ impl Info {
 							let wv: WrappedVersion = WrappedVersion::from(v);
 							println!("{}", wv);
 						});
-					let total: u64 = r.krate.versions.len().try_into().unwrap_or_else(|_x| u64::MAX);
+					let total: u64 = r.krate.versions.len().try_into().unwrap_or(u64::MAX);
 					if total > options.max_versions {
 						println!("... and {} more", total - options.max_versions)
 					}

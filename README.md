@@ -62,7 +62,7 @@ Those will allow you the following calls:
 
 ### Help
 
-    cargo-crate 0.0.3
+    cargo-crate 0.1.3
     Wilfried Kopp <chevdor@gmail.com>
     You can find all available commands below
 
@@ -82,7 +82,7 @@ Those will allow you the following calls:
 
 ### Info command
 
-    cargo-crate-info 0.0.3
+    cargo-crate-info 0.1.3
     Wilfried Kopp <chevdor@gmail.com>
     The `info` command returns summarized information
 
@@ -93,14 +93,22 @@ Those will allow you the following calls:
         <CRATE_NAME>...    One or more crate names
 
     OPTIONS:
-        -h, --help           Print help information
-        -j, --json           Output as json
-        -n, --no-versions    Do not show the details about all the older versions
-        -V, --version        Print version information
+        -h, --help
+                Print help information
+
+        -j, --json
+                Output as json
+
+        -m, --max-versions <MAX_VERSIONS>
+                Limit the number of versions that are displayed. You can push the limit using this flag
+                [default: 10]
+
+        -V, --version
+                Print version information
 
 ### Open command
 
-    cargo-crate-open 0.0.3
+    cargo-crate-open 0.1.3
     Wilfried Kopp <chevdor@gmail.com>
     Opens the crate in a browser
 
@@ -121,7 +129,7 @@ Those will allow you the following calls:
 
 ### Search command
 
-    cargo-crate-search 0.0.3
+    cargo-crate-search 0.1.3
     Wilfried Kopp <chevdor@gmail.com>
     The `search` command returns a list of crates matching your search pattern
 
