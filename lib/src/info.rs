@@ -100,7 +100,7 @@ impl Info {
 			// println!("keywords =\t{:?}", krate.keywords);
 
 			if let Some(options) = opts {
-				if !options.no_versions {
+				if options.max_versions > 0 {
 					// println!("Versions:");
 					println!(
 						"  {version:<9}\t{time:<16}\t{size:<10}\t{publisher:<20}\t{downloads:<10}\t{yanked:>8}",
@@ -111,10 +111,20 @@ impl Info {
 						downloads = "DOWNLOADS",
 						yanked = "YANKED",
 					);
-					r.krate.versions.iter().for_each(|v| {
-						let wv: WrappedVersion = WrappedVersion::from(v);
-						println!("{}", wv);
-					});
+
+					r.krate
+						.versions
+						.iter()
+						.enumerate()
+						.take_while(|(i, _v)| i < &(options.max_versions as usize))
+						.for_each(|(_i, v)| {
+							let wv: WrappedVersion = WrappedVersion::from(v);
+							println!("{}", wv);
+						});
+					let total: u64 = r.krate.versions.len().try_into().unwrap_or_else(|_x| u64::MAX);
+					if total > options.max_versions {
+						println!("... and {} more", total - options.max_versions)
+					}
 				}
 			}
 

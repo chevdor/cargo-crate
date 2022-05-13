@@ -73,7 +73,7 @@ fn main() -> color_eyre::Result<()> {
 			log::debug!("Running command 'info'");
 			let crates: Vec<&str> = info_opts.crate_name.iter().map(|s| s as &str).collect();
 
-			let display_opts = lib_cargo_crate::InfoOpts { json: opts.json, no_versions: info_opts.no_versions };
+			let display_opts = lib_cargo_crate::InfoOpts { json: opts.json, max_versions: info_opts.max_versions };
 			let data = Info::new().fetch(crates, &display_opts).unwrap();
 			Info::show(data, &display_opts);
 		}

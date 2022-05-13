@@ -11,7 +11,7 @@ impl<'a> Display for WrappedVersion<'a> {
 	fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
 		let c = self.version;
 		let size = Byte::from_bytes(c.crate_size.unwrap_or_default() as u128);
-		let adjusted_size = size.get_appropriate_unit(false);
+		let adjusted_size = size.get_appropriate_unit(false).to_string();
 
 		// fmt.write_fmt(format_args!("created {}", c.created_at))?;
 		// fmt.write_fmt(format_args!("updated {}\n", c.updated_at))?;
@@ -25,7 +25,7 @@ impl<'a> Display for WrappedVersion<'a> {
 		fmt.write_fmt(format_args!(
 			"  v{version:<9}\t{time:<16}\t{size:<-10}\t{publisher:<20}\t{downloads:<10}\t{yanked:>8}",
 			version = c.num,
-			size = adjusted_size.to_string(),
+			size = adjusted_size,
 			yanked = if c.yanked { "⚠️ YANKED" } else { "" },
 			publisher = publisher,
 			time = HumanTime::from(c.updated_at),
