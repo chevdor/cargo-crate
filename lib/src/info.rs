@@ -23,7 +23,7 @@ impl Info {
 	}
 
 	/// Fetch all the information about the crate
-	pub fn fetch(&self, crates: Vec<String>, _opts: &InfoOpts) -> anyhow::Result<Vec<ApiResponse>> {
+	pub fn fetch(&self, crates: Vec<&str>, _opts: &InfoOpts) -> anyhow::Result<Vec<ApiResponse>> {
 		// TODO: check out full_crate
 		Ok(crates
 			.iter()
@@ -45,7 +45,7 @@ impl Info {
 
 	/// Print a formatted output to the console.
 	pub fn show_txt(response: &[ApiResponse], opts: Option<&InfoOpts>) {
-		let col_size = 12;
+		let col_size = 16;
 		let emoji_size = col_size - 1;
 		response.iter().for_each(|r| {
 			println!("{:<emoji_size$} {:<}", "🦀 Crate:", r.krate.crate_data.name,);
@@ -56,6 +56,10 @@ impl Info {
 
 			if let Some(h) = r.krate.crate_data.repository.as_ref() {
 				println!("{:<col_size$} {:<}", "Repository:", h);
+			}
+
+			if let Some(h) = r.krate.crate_data.documentation.as_ref() {
+				println!("{:<col_size$} {:<}", "Documentation:", h);
 			}
 
 			match r.owners.len() {
@@ -133,7 +137,7 @@ mod test_super {
 
 	#[test]
 	fn test_fetch() {
-		let crates: Vec<String> = vec!["cargo-crate".to_string(), "sshq".to_string()];
+		let crates: Vec<&str> = vec!["cargo-crate", "sshq"];
 		let opts = InfoOpts::default();
 
 		let res = Info::new().fetch(crates, &opts);

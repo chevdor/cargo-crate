@@ -39,8 +39,8 @@ fn main() -> color_eyre::Result<()> {
 				Target::CratesIo
 			};
 
-			let the_crate = open_opts.crate_name.clone();
-			let the_crates = vec![the_crate];
+			let the_crate = &open_opts.crate_name;
+			let the_crates = vec![the_crate.as_ref()];
 			let options = lib_cargo_crate::InfoOpts::default();
 
 			let info = Info::new();
@@ -50,13 +50,19 @@ fn main() -> color_eyre::Result<()> {
 			let data = data.unwrap();
 
 			let url = match target {
-				Target::CratesIo => format!("https://crates.io/crates/{}", &open_opts.crate_name),
-				Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().into(),
-				Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().into(),
-				Target::Documentation => data.krate.crate_data.documentation.as_ref().unwrap().into(),
+				Target::CratesIo => format!("https://crates.io/crates/{}", the_crate),
+				Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().to_string(),
+				Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().to_string(),
+				Target::Documentation => data
+					.krate
+					.crate_data
+					.documentation
+					.as_ref()
+					.unwrap_or(&format!("https://docs.rs/{}", &the_crate))
+					.to_string(),
 			};
 
-			log::debug!("Opening {:?} from {:?}", &target, url);
+			log::debug!("Opening {:?} from {:?}", &target, &url);
 			let mut browser_options = BrowserOptions::new();
 			browser_options.with_target_hint(&open_opts.crate_name);
 			webbrowser::open_browser_with_options(Browser::Default, &url, &browser_options)
@@ -65,7 +71,8 @@ fn main() -> color_eyre::Result<()> {
 
 		SubCommand::Info(info_opts) => {
 			log::debug!("Running command 'info'");
-			let crates: Vec<String> = info_opts.crate_name;
+			let crates: Vec<&str> = info_opts.crate_name.iter().map(|s| s as &str).collect();
+
 			let display_opts = lib_cargo_crate::InfoOpts { json: opts.json, no_versions: info_opts.no_versions };
 			let data = Info::new().fetch(crates, &display_opts).unwrap();
 			Info::show(data, &display_opts);
