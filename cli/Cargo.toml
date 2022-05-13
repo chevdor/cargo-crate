@@ -1,6 +1,6 @@
 [package]
 name = "cargo-crate"
-version = "0.0.3"
+version = "0.1.3"
 edition = "2021"
 description = "A set of crate related cargo commands. You can for instance get the information about a crate, as text or json, including the owners of a crate and its versions."
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
