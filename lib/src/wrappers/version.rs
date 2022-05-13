@@ -13,7 +13,6 @@ impl<'a> Display for WrappedVersion<'a> {
 		let size = Byte::from_bytes(c.crate_size.unwrap_or_default() as u128);
 		let adjusted_size = size.get_appropriate_unit(false);
 
-		fmt.write_fmt(format_args!("- v{} - {} {}\n", c.num, adjusted_size, if c.yanked { "⚠️ YANKED" } else { "" }))?;
 		// fmt.write_fmt(format_args!("created {}", c.created_at))?;
 		// fmt.write_fmt(format_args!("updated {}\n", c.updated_at))?;
 		let publisher = match &c.published_by {
@@ -23,8 +22,17 @@ impl<'a> Display for WrappedVersion<'a> {
 			},
 			_ => "n/a",
 		};
-		fmt.write_fmt(format_args!("  published {} by {}", HumanTime::from(c.updated_at), publisher))?;
-		fmt.write_fmt(format_args!(", downloads: {}", c.downloads))?;
+		fmt.write_fmt(format_args!(
+			"  v{version:<9}\t{time:<16}\t{size:<-10}\t{publisher:<20}\t{downloads:<10}\t{yanked:>8}",
+			version = c.num,
+			size = adjusted_size.to_string(),
+			yanked = if c.yanked { "⚠️ YANKED" } else { "" },
+			publisher = publisher,
+			time = HumanTime::from(c.updated_at),
+			downloads = c.downloads,
+		))?;
+		// fmt.write_fmt(format_args!("  published {} by {}", HumanTime::from(c.updated_at), publisher))?;
+		// fmt.write_fmt(format_args!(", downloads: {}", c.downloads))?;
 
 		// fmt.write_fmt(format_args!("{:?}", self.version))?;
 		Ok(())

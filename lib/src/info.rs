@@ -101,7 +101,16 @@ impl Info {
 
 			if let Some(options) = opts {
 				if !options.no_versions {
-					println!("Versions:");
+					// println!("Versions:");
+					println!(
+						"  {version:<9}\t{time:<16}\t{size:<10}\t{publisher:<20}\t{downloads:<10}\t{yanked:>8}",
+						version = "VERSION",
+						time = "UPDATED",
+						size = "SIZE",
+						publisher = "PUBLISHED BY",
+						downloads = "DOWNLOADS",
+						yanked = "YANKED",
+					);
 					r.krate.versions.iter().for_each(|v| {
 						let wv: WrappedVersion = WrappedVersion::from(v);
 						println!("{}", wv);
