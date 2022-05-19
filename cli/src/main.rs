@@ -83,9 +83,23 @@ fn main() -> color_eyre::Result<()> {
 			log::debug!("Searching for {:?}", search_opts);
 
 			let hits = Info::new().search(&search_opts.pattern, search_opts.limit).unwrap();
-			hits.iter().for_each(|c| {
-				println!("{}", c.name);
-			})
+
+			if search_opts.raw {
+				hits.iter().for_each(|c| {
+					println!("{}", c.name);
+				})
+			} else {
+				hits.iter().for_each(|c| {
+					let mut desc = c.description.as_ref().unwrap_or(&String::from("")).to_string();
+					desc = desc.replace("\n", " ");
+					const MAX: usize = 80;
+					if desc.len() > MAX {
+						desc.truncate(MAX - 1);
+						desc = format!("{}…", desc);
+					};
+					println!("{:<24} {:>12}\t{}", c.name, c.downloads.to_string(), desc);
+				})
+			}
 		}
 	}
 
