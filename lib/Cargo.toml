@@ -3,7 +3,7 @@ name = "lib-cargo-crate"
 version = "0.1.4"
 edition = "2021"
 license = "MIT"
-description = "a lib for cargo-crate"
+description = "The lib for cargo-crate"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 documentation = "https://docs.rs/crate/lib-cargo-crate"
 [dependencies]

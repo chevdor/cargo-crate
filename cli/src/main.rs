@@ -98,7 +98,7 @@ fn main() -> color_eyre::Result<()> {
 						desc = format!("{}…", desc);
 					};
 					let dl = c.downloads.to_string();
-					println!("{:<24} {:>12}\t{}", c.name, dl, desc);
+					println!("{:<30} {:>12}\t{}", c.name, dl, desc);
 				})
 			}
 		}
