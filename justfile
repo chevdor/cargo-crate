@@ -65,3 +65,8 @@ tag:
     echo Tagging version v$TAG
     git tag "v$TAG" -f
     git tag | sort -Vr | head
+
+tag_push:
+    #!/bin/sh
+    echo Pushing v$TAG
+    git push origin v$TAG
