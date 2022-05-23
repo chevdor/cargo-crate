@@ -40,8 +40,8 @@ deny:
 check: _clippy _fmt
 
 # Minor bump, can be used once the release is ready
-bump:
-	cargo workspaces version --no-git-commit
+bump bump=default_bump:
+	cargo workspaces version {{bump}} --no-git-commit
 
 clean:
 	rm -f cli/*.wasm
@@ -57,8 +57,11 @@ md:
     #!/usr/bin/env bash
     asciidoctor -b docbook -a leveloffset=+1 -o - README_src.adoc | pandoc   --markdown-headings=atx --wrap=preserve -t markdown_strict -f docbook - > README.md
 
-release bump=default_bump: check test_all doc md
-	cargo workspaces publish {{bump}}
+release : check test_all bump doc md tag tag_publish
+	#!/bin/sh
+    echo Releasing v$TAG
+	git checkout v$TAG
+	cargo workspaces publish --skip-published --amend --exact --all
 
 tag:
     #!/bin/sh
