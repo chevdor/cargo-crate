@@ -1,4 +1,4 @@
-cargo-crate-search 0.1.4
+cargo-crate-search 0.1.5
 Wilfried Kopp <chevdor@gmail.com>
 The `search` command returns a list of crates matching your search pattern
 
