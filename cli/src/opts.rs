@@ -73,7 +73,7 @@ pub struct SearchOpts {
 	pub pattern: String,
 
 	/// Number of expected results: 0..100
-	#[clap(short, long, default_value("12"), validator(valid_page_size))]
+	#[clap(short, long, default_value("12"), value_parser = valid_page_size)]
 	pub limit: u64,
 
 	/// Show only the list of crates, without extra information
