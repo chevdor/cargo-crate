@@ -119,7 +119,7 @@ impl Info {
 						.take_while(|(i, _v)| i < &(options.max_versions as usize))
 						.for_each(|(_i, v)| {
 							let wv: WrappedVersion = WrappedVersion::from(v);
-							println!("{}", wv);
+							println!("{wv}");
 						});
 					let total: u64 = r.krate.versions.len().try_into().unwrap_or(u64::MAX);
 					if total > options.max_versions {

@@ -19,7 +19,7 @@ path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4", features = ["derive", "env", "unicode", "cargo"] }
-env_logger = "0.9"
+env_logger = "0.10"
 log = "0.4"
 color-eyre = "0.6"
 webbrowser = "0.8"

@@ -50,7 +50,7 @@ fn main() -> color_eyre::Result<()> {
 			let data = data.unwrap();
 
 			let url = match target {
-				Target::CratesIo => format!("https://crates.io/crates/{}", the_crate),
+				Target::CratesIo => format!("https://crates.io/crates/{the_crate}"),
 				Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().to_string(),
 				Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().to_string(),
 				Target::Documentation => data
@@ -95,7 +95,7 @@ fn main() -> color_eyre::Result<()> {
 					const MAX: usize = 80;
 					if desc.len() > MAX {
 						desc.truncate(MAX - 1);
-						desc = format!("{}…", desc);
+						desc = format!("{desc}…");
 					};
 					let dl = c.downloads.to_string();
 					println!("{:<30} {:>12}\t{}", c.name, dl, desc);
