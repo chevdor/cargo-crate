@@ -1,18 +1,14 @@
-cargo-crate-open 0.1.5
-Wilfried Kopp <chevdor@gmail.com>
 Opens the crate in a browser
 
-USAGE:
-    cargo-crate open [OPTIONS] <CRATE_NAME>
+Usage: cargo-crate open [OPTIONS] <CRATE_NAME>
 
-ARGS:
-    <CRATE_NAME>    The name of the crate to open in your browser
+Arguments:
+  <CRATE_NAME>  The name of the crate to open in your browser
 
-OPTIONS:
-        --documentation    We open crates.io by default, use this flag to open the documentation
-                           instead
-    -h, --help             Print help information
-        --homepage         We open crates.io by default, use this flag to open the homepage instead
-    -j, --json             Output as json
-        --repository       We open crates.io by default, use this flag to open the repo instead
-    -V, --version          Print version information
+Options:
+  -j, --json           Output as json
+      --repository     We open crates.io by default, use this flag to open the repo instead
+      --homepage       We open crates.io by default, use this flag to open the homepage instead
+      --documentation  We open crates.io by default, use this flag to open the documentation instead
+  -h, --help           Print help information
+  -V, --version        Print version information

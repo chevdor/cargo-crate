@@ -130,7 +130,7 @@ checksum = "dfb24e866b15a1af2a1b663f10c6b6b8f397a84aadb828f12e5b289ec23a3a3c"
 
 [[package]]
 name = "cargo-crate"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "assert_cmd",
  "clap",
@@ -814,7 +814,7 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "lib-cargo-crate"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "anyhow",
  "byte-unit",
