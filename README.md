@@ -62,89 +62,68 @@ Those will allow you the following calls:
 
 ### Help
 
-    cargo-crate 0.1.5
-    Wilfried Kopp <chevdor@gmail.com>
     You can find all available commands below
 
-    USAGE:
-        cargo-crate [OPTIONS] <SUBCOMMAND>
+    Usage: cargo-crate [OPTIONS] <COMMAND>
 
-    OPTIONS:
-        -h, --help       Print help information
-        -j, --json       Output as json
-        -V, --version    Print version information
+    Commands:
+      info    The `info` command returns summarized information
+      open    Opens the crate in a browser
+      search  The `search` command returns a list of crates matching your search pattern
+      help    Print this message or the help of the given subcommand(s)
 
-    SUBCOMMANDS:
-        help      Print this message or the help of the given subcommand(s)
-        info      The `info` command returns summarized information
-        open      Opens the crate in a browser
-        search    The `search` command returns a list of crates matching your search pattern
+    Options:
+      -j, --json     Output as json
+      -h, --help     Print help information
+      -V, --version  Print version information
 
 ### Info command
 
-    cargo-crate-info 0.1.5
-    Wilfried Kopp <chevdor@gmail.com>
     The `info` command returns summarized information
 
-    USAGE:
-        cargo-crate info [OPTIONS] [CRATE_NAME]...
+    Usage: cargo-crate info [OPTIONS] [CRATE_NAME]...
 
-    ARGS:
-        <CRATE_NAME>...    One or more crate names
+    Arguments:
+      [CRATE_NAME]...  One or more crate names
 
-    OPTIONS:
-        -h, --help
-                Print help information
-
-        -j, --json
-                Output as json
-
-        -m, --max-versions <MAX_VERSIONS>
-                Limit the number of versions that are displayed. You can push the limit using this flag
-                [default: 10]
-
-        -V, --version
-                Print version information
+    Options:
+      -j, --json                         Output as json
+      -m, --max-versions <MAX_VERSIONS>  Limit the number of versions that are displayed. You can push the limit using this flag [default: 10]
+      -h, --help                         Print help information
+      -V, --version                      Print version information
 
 ### Open command
 
-    cargo-crate-open 0.1.5
-    Wilfried Kopp <chevdor@gmail.com>
     Opens the crate in a browser
 
-    USAGE:
-        cargo-crate open [OPTIONS] <CRATE_NAME>
+    Usage: cargo-crate open [OPTIONS] <CRATE_NAME>
 
-    ARGS:
-        <CRATE_NAME>    The name of the crate to open in your browser
+    Arguments:
+      <CRATE_NAME>  The name of the crate to open in your browser
 
-    OPTIONS:
-            --documentation    We open crates.io by default, use this flag to open the documentation
-                               instead
-        -h, --help             Print help information
-            --homepage         We open crates.io by default, use this flag to open the homepage instead
-        -j, --json             Output as json
-            --repository       We open crates.io by default, use this flag to open the repo instead
-        -V, --version          Print version information
+    Options:
+      -j, --json           Output as json
+          --repository     We open crates.io by default, use this flag to open the repo instead
+          --homepage       We open crates.io by default, use this flag to open the homepage instead
+          --documentation  We open crates.io by default, use this flag to open the documentation instead
+      -h, --help           Print help information
+      -V, --version        Print version information
 
 ### Search command
 
-    cargo-crate-search 0.1.5
-    Wilfried Kopp <chevdor@gmail.com>
     The `search` command returns a list of crates matching your search pattern
 
-    USAGE:
-        cargo-crate search [OPTIONS] <PATTERN>
+    Usage: cargo-crate search [OPTIONS] <PATTERN>
 
-    ARGS:
-        <PATTERN>    You search pattern
+    Arguments:
+      <PATTERN>  You search pattern
 
-    OPTIONS:
-        -h, --help             Print help information
-        -j, --json             Output as json
-        -l, --limit <LIMIT>    Number of expected results: 0..100 [default: 12]
-        -r, --raw              Show only the list of crates, without extra information
-        -V, --version          Print version information
+    Options:
+      -j, --json           Output as json
+      -l, --limit <LIMIT>  Number of expected results: 0..100 [default: 12]
+      -r, --raw            Show only the list of crates, without extra information
+      -h, --help           Print help information
+      -V, --version        Print version information
 
 ## Advanced Usage
 
