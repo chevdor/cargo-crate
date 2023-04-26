@@ -1,3 +1,4 @@
+use crate::crate_input::CrateInput;
 use clap::{crate_authors, crate_version, Parser, Subcommand};
 
 ///
@@ -28,9 +29,9 @@ pub enum SubCommand {
 /// The `info` command returns summarized information
 #[derive(Parser, Debug)]
 pub struct InfoOpts {
-	/// One or more crate names
+	/// One or more crate, passed as name or path
 	#[clap(alias("name"), index = 1)]
-	pub crate_name: Vec<String>,
+	pub crate_names: Vec<CrateInput>,
 
 	/// Limit the number of versions that are displayed. You can push the limit using this flag.
 	#[clap(short, long, alias("max"), default_value("10"))]
@@ -40,9 +41,9 @@ pub struct InfoOpts {
 /// Opens the crate in a browser
 #[derive(Parser, Debug)]
 pub struct OpenOpts {
-	/// The name of the crate to open in your browser
+	/// The name(s) of the crate to open in your browser
 	#[clap(alias("name"), index = 1)]
-	pub crate_name: String,
+	pub crate_names: Vec<CrateInput>,
 
 	/// We open crates.io by default, use this flag to open the repo instead
 	#[clap(long, alias("repo"))]
