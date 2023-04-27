@@ -2,31 +2,41 @@
 
 ## Intro
 
-`cargo-crate` is an additional cargo command for your crate. It basiscally does the same (I’d argue better) than the following:
-
--   `cargo-show`
-
--   `cargo-info`
-
--   `cargo-open`
-
--   `cargo-search`
-
-and does not require installing several crates/commands.
+`cargo-crate` is an additional cargo command for your crate(s).
 
 ## Features
 
 In a nutshell `cargo-crate` allows:
 
--   fetching information about one or several crates, including its owners
+-   fetching information about one or several crates, including the owners
 
--   opening a crate in crates.io
+-   opening crate(s) in crates.io
 
--   opening a crates' documentation directly
+-   opening crates' documentation directly
 
--   opening a crates' repository directly
+-   opening crates' repository directly
 
--   opening a crates' homepage directly
+-   opening crates' homepage directly
+
+-   search for crates passing a pattern
+
+You may pass either the name of your crate such as `cargo-crate` but you may also provide the path of a package or even a workspace.
+
+You may for instance find the following commands rather useful:
+- `cargo crate open .`
+- `cargo crate open . --doc`
+- `cargo crate open . --repo` (if you like that, checkout [`chevdor/gho`](https://github.com/chevdor/gh))
+- `cargo crate info .`
+
+For all the command above, if you work on a workspace, all its crates will be handled.
+
+## Similar projects
+
+{prg} basiscally does the same (I’d argue better) than the following (combined):
+- `cargo-show`
+- `cargo-info`
+- `cargo-open`
+- `cargo-search`
 
 ## Install
 
