@@ -63,8 +63,6 @@ publish:
 	git checkout v$TAG
 	cargo workspaces publish --skip-published --amend --exact --all
 
-release : check test_all bump doc md tag tag_push publish
-
 tag:
     #!/bin/sh
     echo Tagging version v$TAG
@@ -75,3 +73,5 @@ tag_push:
     #!/bin/sh
     echo Pushing v$TAG
     git push origin v$TAG
+
+release : check test_all bump doc md tag tag_push publish

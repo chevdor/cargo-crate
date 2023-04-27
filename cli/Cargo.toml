@@ -1,6 +1,6 @@
 [package]
 name = "cargo-crate"
-version = "0.1.8"
+version = "0.2.0"
 edition = "2021"
 description = "A set of crate related cargo commands. You can for instance get the information about a crate, as text or json, including the owners of a crate and its versions."
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -23,7 +23,7 @@ env_logger = "0.10"
 log = "0.4"
 color-eyre = "0.6"
 webbrowser = "0.8"
-lib-cargo-crate = { path = "../lib", version = "0.1" }
+lib-cargo-crate = { path = "../lib", version = "0.2" }
 anyhow = "1.0.70"
 inquire = { version = "0.6", optional = true }
 
