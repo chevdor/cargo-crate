@@ -30,7 +30,7 @@ For all the command above, if you work on a workspace, all its crates will be ha
 
 == Similar projects
 
-{prg} basiscally does the same (I'd argue better) than the following (combined):
+{prj} basiscally does the same (I'd argue better) than the following (combined):
 - `cargo-show`
 - `cargo-info`
 - `cargo-open`
