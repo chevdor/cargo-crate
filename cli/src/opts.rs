@@ -58,15 +58,15 @@ pub struct OpenOpts {
 	pub documentation: bool,
 }
 
-fn valid_page_size(v: &str) -> Result<(), String> {
+fn valid_page_size(v: &str) -> Result<u64, String> {
 	let i = v.parse::<u64>().expect("Failed parsing number");
 	if i <= 100 {
-		return Ok(());
+		return Ok(i);
 	}
 	Err(String::from("The page size must be 0..100"))
 }
 
-/// The `search` command returns a list of crates matching your search pattern
+/// Search crates.io and return a list of crates matching your search pattern
 #[derive(Parser, Debug)]
 pub struct SearchOpts {
 	/// You search pattern

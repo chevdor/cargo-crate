@@ -18,8 +18,18 @@ pub fn get_crates(path: &Path) -> Result<Vec<Manifest>> {
 	// we want `path` to be a folder and `cargo_toml_path` to be a file
 	let path = if path.is_file() { path.parent().unwrap().into() } else { path };
 	let cargo_toml_path = if path.is_dir() { path.join("Cargo.toml") } else { path.clone() };
-	let crate_file = fs::read(cargo_toml_path).expect("Failed loading Cargo.toml");
-	let crate_info = cargo_toml::Manifest::from_slice(&crate_file)?;
+
+	let crate_file = fs::read(cargo_toml_path);
+	if crate_file.is_err() {
+		bail!("Impossible to find a valid Cargo.toml at {}", path.display());
+	}
+
+	let crate_info = cargo_toml::Manifest::from_slice(&crate_file.unwrap());
+	if crate_info.is_err() {
+		bail!("Impossible to load a valid Cargo.toml at {}", path.display());
+	}
+
+	let crate_info = crate_info.unwrap();
 
 	let size = if let Some(workspace) = &crate_info.workspace {
 		workspace.members.len()

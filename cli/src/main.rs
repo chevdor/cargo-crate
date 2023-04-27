@@ -4,11 +4,11 @@ mod target;
 mod types;
 
 use clap::{crate_name, crate_version, Parser};
+use color_eyre::Result;
 use env_logger::Env;
 use lib_cargo_crate::*;
 use opts::*;
-use std::ffi::OsString;
-use std::ops::Deref;
+use std::{collections::HashMap, ffi::OsString, ops::Deref, process};
 use webbrowser::{Browser, BrowserOptions};
 
 // use crate::crate_input::*;
@@ -16,7 +16,9 @@ use crate::target::*;
 use crate::types::*;
 
 /// Main entry point
-fn main() -> color_eyre::Result<()> {
+fn main() -> Result<()> {
+	color_eyre::install()?;
+
 	env_logger::Builder::from_env(Env::default().default_filter_or("none")).init();
 	let cmd_name = OsString::from(crate_name!().replace("cargo-", ""));
 	// Filter the command out so we can use the command as cargo crate as well as cargo-crate
@@ -52,40 +54,66 @@ fn main() -> color_eyre::Result<()> {
 			let data = data.first();
 			let data = data.unwrap();
 
-			let urls: Vec<String> = crate_names
+			let urls: HashMap<CrateName, String> = crate_names
 				.iter()
-				.map(|c| match target {
-					Target::CratesIo => format!("https://crates.io/crates/{c}"),
-					Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().to_string(),
-					Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().to_string(),
-					Target::Documentation => data
-						.krate
-						.crate_data
-						.documentation
-						.as_ref()
-						.unwrap_or(&format!("https://docs.rs/{}", &c))
-						.to_string(),
+				.map(|c| {
+					let url = match target {
+						Target::CratesIo => format!("https://crates.io/crates/{c}"),
+						Target::Repository => data.krate.crate_data.repository.as_ref().unwrap().to_string(),
+						Target::Homepage => data.krate.crate_data.homepage.as_ref().unwrap().to_string(),
+						Target::Documentation => data
+							.krate
+							.crate_data
+							.documentation
+							.as_ref()
+							.unwrap_or(&format!("https://docs.rs/{}", &c))
+							.to_string(),
+					};
+					(c.clone(), url)
 				})
 				.collect();
 
-			urls.iter().for_each(|url| {
-				log::debug!("Opening {:?} from {:?}", &target, &url);
-				let mut browser_options = BrowserOptions::new();
-				browser_options.with_target_hint(url);
-				webbrowser::open_browser_with_options(Browser::Default, url, &browser_options)
-					.expect("Problem while opening default browser");
-			});
+			if !urls.is_empty() {
+				println!("Opening {} urls in your browser:", urls.len());
+				urls.iter().for_each(|(name, url)| {
+					println!(" - {target}: {name:<20} at {url}");
+					let mut browser_options = BrowserOptions::new();
+					browser_options.with_target_hint(name);
+					webbrowser::open_browser_with_options(Browser::Default, url, &browser_options)
+						.expect("Problem while opening default browser");
+				});
+			} else {
+				eprintln!("No crates/url found");
+				process::exit(1)
+			}
 		}
 
 		SubCommand::Info(info_opts) => {
 			log::debug!("Running command 'info'");
-			let crate_names: Vec<CrateName> =
-				info_opts.crate_names.iter().flat_map(|s| s.names().expect("Issue getting names")).collect();
+			let crate_names: Vec<CrateName> = info_opts
+				.crate_names
+				.iter()
+				.flat_map(|s| {
+					let names = s.names();
+
+					if names.is_err() {
+						eprintln!("Error: {}", &names.err().unwrap());
+						process::exit(1)
+					}
+					names.unwrap()
+				})
+				.collect();
 			let crates: Vec<&str> = crate_names.iter().map(|x| x.deref()).collect();
 
 			let display_opts = lib_cargo_crate::InfoOpts { json: opts.json, max_versions: info_opts.max_versions };
-			let data = Info::new().fetch(crates, &display_opts).unwrap();
-			Info::show(data, &display_opts);
+			let response = Info::new().fetch(crates, &display_opts);
+
+			if let Ok(info) = response {
+				Info::show(info, &display_opts);
+			} else {
+				eprintln!("Error: {:?}", response.err().unwrap());
+				process::exit(1)
+			}
 		}
 
 		SubCommand::Search(search_opts) => {

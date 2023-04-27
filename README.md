@@ -69,49 +69,49 @@ Those will allow you the following calls:
     Commands:
       info    The `info` command returns summarized information
       open    Opens the crate in a browser
-      search  The `search` command returns a list of crates matching your search pattern
+      search  Search crates.io and return a list of crates matching your search pattern
       help    Print this message or the help of the given subcommand(s)
 
     Options:
       -j, --json     Output as json
-      -h, --help     Print help information
-      -V, --version  Print version information
+      -h, --help     Print help
+      -V, --version  Print version
 
 ### Info command
 
     The `info` command returns summarized information
 
-    Usage: cargo-crate info [OPTIONS] [CRATE_NAME]...
+    Usage: cargo-crate info [OPTIONS] [CRATE_NAMES]...
 
     Arguments:
-      [CRATE_NAME]...  One or more crate names
+      [CRATE_NAMES]...  One or more crate, passed as name or path
 
     Options:
       -j, --json                         Output as json
       -m, --max-versions <MAX_VERSIONS>  Limit the number of versions that are displayed. You can push the limit using this flag [default: 10]
-      -h, --help                         Print help information
-      -V, --version                      Print version information
+      -h, --help                         Print help
+      -V, --version                      Print version
 
 ### Open command
 
     Opens the crate in a browser
 
-    Usage: cargo-crate open [OPTIONS] <CRATE_NAME>
+    Usage: cargo-crate open [OPTIONS] [CRATE_NAMES]...
 
     Arguments:
-      <CRATE_NAME>  The name of the crate to open in your browser
+      [CRATE_NAMES]...  The name(s) of the crate to open in your browser
 
     Options:
       -j, --json           Output as json
           --repository     We open crates.io by default, use this flag to open the repo instead
           --homepage       We open crates.io by default, use this flag to open the homepage instead
           --documentation  We open crates.io by default, use this flag to open the documentation instead
-      -h, --help           Print help information
-      -V, --version        Print version information
+      -h, --help           Print help
+      -V, --version        Print version
 
 ### Search command
 
-    The `search` command returns a list of crates matching your search pattern
+    Search crates.io and return a list of crates matching your search pattern
 
     Usage: cargo-crate search [OPTIONS] <PATTERN>
 
@@ -122,8 +122,8 @@ Those will allow you the following calls:
       -j, --json           Output as json
       -l, --limit <LIMIT>  Number of expected results: 0..100 [default: 12]
       -r, --raw            Show only the list of crates, without extra information
-      -h, --help           Print help information
-      -V, --version        Print version information
+      -h, --help           Print help
+      -V, --version        Print version
 
 ## Advanced Usage
 
