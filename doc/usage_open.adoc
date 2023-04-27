@@ -1,14 +1,14 @@
 Opens the crate in a browser
 
-Usage: cargo-crate open [OPTIONS] <CRATE_NAME>
+Usage: cargo-crate open [OPTIONS] [CRATE_NAMES]...
 
 Arguments:
-  <CRATE_NAME>  The name of the crate to open in your browser
+  [CRATE_NAMES]...  The name(s) of the crate to open in your browser
 
 Options:
   -j, --json           Output as json
       --repository     We open crates.io by default, use this flag to open the repo instead
       --homepage       We open crates.io by default, use this flag to open the homepage instead
       --documentation  We open crates.io by default, use this flag to open the documentation instead
-  -h, --help           Print help information
-  -V, --version        Print version information
+  -h, --help           Print help
+  -V, --version        Print version

@@ -1,12 +1,12 @@
 The `info` command returns summarized information
 
-Usage: cargo-crate info [OPTIONS] [CRATE_NAME]...
+Usage: cargo-crate info [OPTIONS] [CRATE_NAMES]...
 
 Arguments:
-  [CRATE_NAME]...  One or more crate names
+  [CRATE_NAMES]...  One or more crate, passed as name or path
 
 Options:
   -j, --json                         Output as json
   -m, --max-versions <MAX_VERSIONS>  Limit the number of versions that are displayed. You can push the limit using this flag [default: 10]
-  -h, --help                         Print help information
-  -V, --version                      Print version information
+  -h, --help                         Print help
+  -V, --version                      Print version

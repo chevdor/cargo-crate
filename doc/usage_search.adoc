@@ -1,4 +1,4 @@
-The `search` command returns a list of crates matching your search pattern
+Search crates.io and return a list of crates matching your search pattern
 
 Usage: cargo-crate search [OPTIONS] <PATTERN>
 
@@ -9,5 +9,5 @@ Options:
   -j, --json           Output as json
   -l, --limit <LIMIT>  Number of expected results: 0..100 [default: 12]
   -r, --raw            Show only the list of crates, without extra information
-  -h, --help           Print help information
-  -V, --version        Print version information
+  -h, --help           Print help
+  -V, --version        Print version
