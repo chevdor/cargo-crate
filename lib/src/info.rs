@@ -70,7 +70,7 @@ impl Info {
 				),
 				x if x > 1 => {
 					print!("{:<col_size$} ", "Owners:");
-					r.owners.iter().for_each(|user| print!("{}, ", user.name.as_ref().unwrap()));
+					r.owners.iter().for_each(|user| print!("{}, ", user.name.as_ref().unwrap_or(&String::from("n/a"))));
 					println!();
 				}
 				_ => {}

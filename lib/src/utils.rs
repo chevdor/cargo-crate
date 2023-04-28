@@ -41,7 +41,6 @@ pub fn get_crates(path: &Path) -> Result<Vec<Manifest>> {
 
 	let mut result: Vec<Manifest> = Vec::with_capacity(size);
 
-	// TODO: if workspace, loop thru members
 	if crate_info.package.is_some() {
 		result.push(crate_info)
 	} else if let Some(workspace) = crate_info.workspace {

@@ -18,9 +18,13 @@ mod cli_tests {
 		use assert_cmd::Command;
 		#[test]
 		fn it_returns_info() {
-			let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
-			let assert = cmd.args(["info", "cargo-crate"]).assert();
-			assert.success().code(0);
+			const CRATES: [&str; 4] = ["cargo-crate", "glob", "globset", "subwasm"];
+			CRATES.iter().for_each(|c| {
+				println!("Checking infos for crate: {c}");
+				let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
+				let assert = cmd.args(["info", c]).assert();
+				assert.success().code(0);
+			})
 		}
 	}
 
