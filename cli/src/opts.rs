@@ -45,15 +45,15 @@ pub struct OpenOpts {
 	#[clap(alias("name"), index = 1)]
 	pub crate_names: Vec<CrateInput>,
 
-	/// We open crates.io by default, use this flag to open the repo instead
+	/// Open crates.io by default, use this flag to open the repo instead
 	#[clap(long, alias("repo"))]
 	pub repository: bool,
 
-	/// We open crates.io by default, use this flag to open the homepage instead
+	/// Open crates.io by default, use this flag to open the homepage instead
 	#[clap(long, alias("home"))]
 	pub homepage: bool,
 
-	/// We open crates.io by default, use this flag to open the documentation instead
+	/// Open crates.io by default, use this flag to open the documentation instead
 	#[clap(long, alias("doc"))]
 	pub documentation: bool,
 }

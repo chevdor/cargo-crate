@@ -7,8 +7,8 @@ Arguments:
 
 Options:
   -j, --json           Output as json
-      --repository     We open crates.io by default, use this flag to open the repo instead
-      --homepage       We open crates.io by default, use this flag to open the homepage instead
-      --documentation  We open crates.io by default, use this flag to open the documentation instead
+      --repository     Open crates.io by default, use this flag to open the repo instead
+      --homepage       Open crates.io by default, use this flag to open the homepage instead
+      --documentation  Open crates.io by default, use this flag to open the documentation instead
   -h, --help           Print help
   -V, --version        Print version

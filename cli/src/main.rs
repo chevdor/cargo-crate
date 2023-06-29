@@ -1,4 +1,5 @@
 mod crate_input;
+mod exit_code;
 mod opts;
 mod target;
 mod types;
@@ -11,9 +12,10 @@ use opts::*;
 use std::{collections::HashMap, ffi::OsString, ops::Deref, process};
 use webbrowser::{Browser, BrowserOptions};
 
-// use crate::crate_input::*;
 use crate::target::*;
 use crate::types::*;
+
+use exit_code::*;
 
 /// Main entry point
 fn main() -> Result<()> {
@@ -49,8 +51,13 @@ fn main() -> Result<()> {
 			let options = lib_cargo_crate::InfoOpts::default();
 
 			let info = Info::new();
-			let fetched = info.fetch(the_crates, &options);
-			let data = fetched.unwrap();
+			let data = match info.fetch(the_crates, &options) {
+				Ok(data) => data,
+				Err(e) => {
+					eprintln!("{e:?}");
+					process::exit(ExitCode::GeneralError.into())
+				}
+			};
 			let data = data.first();
 			let data = data.unwrap();
 
@@ -84,7 +91,7 @@ fn main() -> Result<()> {
 				});
 			} else {
 				eprintln!("No crates/url found");
-				process::exit(1)
+				process::exit(ExitCode::GeneralError.into())
 			}
 		}
 
@@ -98,7 +105,7 @@ fn main() -> Result<()> {
 
 					if names.is_err() {
 						eprintln!("Error: {}", &names.err().unwrap());
-						process::exit(1)
+						process::exit(ExitCode::GeneralError.into())
 					}
 					names.unwrap()
 				})
@@ -112,7 +119,7 @@ fn main() -> Result<()> {
 				Info::show(info, &display_opts);
 			} else {
 				eprintln!("Error: {:?}", response.err().unwrap());
-				process::exit(1)
+				process::exit(ExitCode::GeneralError.into())
 			}
 		}
 
@@ -121,6 +128,11 @@ fn main() -> Result<()> {
 			log::debug!("Searching for {:?}", search_opts);
 
 			let hits = Info::new().search(&search_opts.pattern, search_opts.limit).unwrap();
+
+			if hits.is_empty() {
+				eprintln!("Searching for '{}' yielded no results.", &search_opts.pattern);
+				process::exit(ExitCode::NoResultFound.into())
+			}
 
 			if search_opts.raw {
 				hits.iter().for_each(|c| {

@@ -56,6 +56,7 @@ changelog:
 md:
 	#!/usr/bin/env bash
 	asciidoctor -b docbook -a leveloffset=+1 -o - README_src.adoc | pandoc   --markdown-headings=atx --wrap=preserve -t markdown_strict -f docbook - > README.md
+	# The README of cli is symlinked to the main README
 
 publish:
 	#!/bin/sh

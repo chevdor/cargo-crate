@@ -1,9 +1,9 @@
 [package]
 name = "cargo-crate"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 description = "A set of crate related cargo commands. You can for instance get the information about a crate, as text or json, including the owners of a crate and its versions."
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
 license = "MIT"
 keywords = ["cli", "cargo", "crate", "cargo-subcommand"]
 default-run = "cargo-crate"
@@ -18,10 +18,16 @@ name = "cargo-crate"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4", features = ["derive", "env", "unicode", "cargo"] }
+clap = { version = "4", features = [
+    "std",
+    "derive",
+    "env",
+    "unicode",
+    "cargo",
+] }
 env_logger = "0.10"
 log = "0.4"
-color-eyre = "0.6"
+color-eyre = { version = "0.6", default-features = false }
 webbrowser = "0.8"
 lib-cargo-crate = { path = "../lib", version = "0.2" }
 anyhow = "1.0.70"
