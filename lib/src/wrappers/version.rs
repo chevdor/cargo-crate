@@ -10,8 +10,8 @@ pub struct WrappedVersion<'a> {
 impl<'a> Display for WrappedVersion<'a> {
 	fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
 		let c = self.version;
-		let size = Byte::from_bytes(c.crate_size.unwrap_or_default() as u128);
-		let adjusted_size = size.get_appropriate_unit(false).to_string();
+		let size = Byte::from_u64(c.crate_size.unwrap_or_default());
+		let adjusted_size = format!("{:.2}", size.get_appropriate_unit(UnitType::Decimal));
 
 		// fmt.write_fmt(format_args!("created {}", c.created_at))?;
 		// fmt.write_fmt(format_args!("updated {}\n", c.updated_at))?;

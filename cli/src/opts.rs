@@ -1,7 +1,6 @@
 use crate::crate_input::CrateInput;
 use clap::{crate_authors, crate_version, Parser, Subcommand};
 
-///
 #[derive(Parser, Debug)]
 #[clap(version = crate_version!(), author = crate_authors!())]
 pub struct Opts {
