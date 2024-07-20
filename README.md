@@ -40,7 +40,7 @@ For all the command above, if you work on a workspace, all its crates will be ha
 
 ## Install
 
-    cargo install cargo-crate
+    cargo instal cargo-crate
 
 ### Aliases
 
